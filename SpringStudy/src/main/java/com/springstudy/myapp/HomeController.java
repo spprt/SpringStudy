@@ -1,4 +1,4 @@
-package com.dkstudy.myapp;
+package com.springstudy.myapp;
 
 import java.text.DateFormat;
 import java.util.Date;

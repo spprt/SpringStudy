@@ -28,6 +28,11 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+		    <groupId>commons-logging</groupId>
+		    <artifactId>commons-logging</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
@@ -108,14 +113,92 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+		
+		<dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+		
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+		
+	 	<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.5.6-Final</version>
+        </dependency>  
+ 
+        <dependency>
+           <groupId>org.hibernate</groupId>
+           <artifactId>hibernate-validator</artifactId>
+           <version>6.0.9.Final</version>
+        </dependency>
+        
+         <!-- MySQL -->
+         <!-- added latest version of mysql connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.18</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.8</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+            
+        <!-- log4j-remix -->
+		<dependency>
+		    <groupId>org.lazyluke</groupId>
+	        <artifactId>log4jdbc-remix</artifactId>
+		    <version>0.2.7</version>
+		</dependency>
+
+            
+        <!-- JPA Provider (Hibernate) -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.10.Final</version>
+        </dependency>
+ 
+        <!-- Spring Data JPA -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.8.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+        	<groupId>org.codehaus.jackson</groupId>
+        	<artifactId>jackson-mapper-asl</artifactId>
+        	<version>1.9.13</version>
+        </dependency>
+        
+        <dependency>
+        	<groupId>org.codehaus.jackson</groupId>
+        	<artifactId>jackson-core-asl</artifactId>
+        	<version>1.9.13</version>
+        </dependency>
+        
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>     
 	</dependencies>
     <build>
         <plugins>

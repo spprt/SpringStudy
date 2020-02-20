@@ -2,19 +2,23 @@ package com.springstudy.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springstudy.domain.Employee;
+import com.springstudy.entity.Employee;
+import com.springstudy.exception.IdPasswordNotMatchingException;
 import com.springstudy.persistence.EmployeeDAO;
+import com.springstudy.util.AuthInfo;
+import com.springstudy.util.LoginCommand;
 
-@Service
+@Service("employeeService")
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
-	@Autowired
+	@Resource(name = "employeeDAO")
 	private EmployeeDAO employeeDAO;
 
 	@Override
@@ -31,12 +35,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public void deleteEmployee(Integer employeeId) {
-		employeeDAO.deleteEmployee(employeeId);
+	public void deleteEmployee(Long idx) {
+		employeeDAO.deleteEmployee(idx);
 	}
 
-	public Employee getEmployee(int empid) {
-		return employeeDAO.getEmployee(empid);
+	public Employee getEmployee(Long idx) {
+		return employeeDAO.getEmployee(idx);
+	}
+
+	public Employee getEmployee(String id) {
+		return employeeDAO.getEmployee(id);
 	}
 
 	public Employee updateEmployee(Employee employee) {
@@ -46,6 +54,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	public void setEmployeeDAO(EmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;
+	}
+
+	@Override
+	public AuthInfo loginAuth(LoginCommand loginCommand) throws Exception {
+		Employee emp = getEmployee(loginCommand.getId());
+		System.out.println(loginCommand.getId());
+		System.out.println(loginCommand.getPassword());
+		if (emp == null) {
+			throw new IdPasswordNotMatchingException();
+		}
+		System.out.println("emp.getPassword() ::: " + emp.getPassword());
+		System.out.println("loginCommand.getPassword() ::: " + loginCommand.getPassword());
+		if (!emp.matchPassword(loginCommand.getPassword())) {
+			throw new IdPasswordNotMatchingException();
+		}
+
+		return new AuthInfo(emp.getId(), emp.getName());
 	}
 
 }

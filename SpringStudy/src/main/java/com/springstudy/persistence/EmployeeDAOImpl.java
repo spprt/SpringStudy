@@ -1,14 +1,16 @@
 package com.springstudy.persistence;
 
+import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.springstudy.domain.Employee;
+import com.springstudy.entity.Employee;
 
-@Repository
+@Repository("employeeDAO")
 public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Autowired
@@ -26,8 +28,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public void deleteEmployee(Integer employeeId) {
-		Employee employee = (Employee) sessionFactory.getCurrentSession().load(Employee.class, employeeId);
+	public void deleteEmployee(Long idx) {
+		Employee employee = (Employee) sessionFactory.getCurrentSession().load(Employee.class, idx);
 		if (null != employee) {
 			this.sessionFactory.getCurrentSession().delete(employee);
 		}
@@ -40,8 +42,19 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee getEmployee(int employeeid) {
-		return (Employee) sessionFactory.getCurrentSession().get(Employee.class, employeeid);
+	public Employee getEmployee(Long idx) {
+		return (Employee) sessionFactory.getCurrentSession().get(Employee.class, idx);
 	}
 
+	@Override
+	public Employee getEmployee(String id) {
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("com.kcube.sys.emp.Employee.selectUserByLoginId");
+		sessionFactory.getCurrentSession().getNamedQuery("userFindById");
+		query.setString("id", id);
+		Iterator<Employee> i = query.iterate();
+		if (i.hasNext()) {
+			return (Employee) i.next();
+		}
+		return null;
+	}
 }

@@ -1,4 +1,4 @@
-package com.springstudy.domain;
+package com.springstudy.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -33,12 +33,16 @@ public class Employee implements Serializable {
 
 	@Column(name = "regdate")
 	private Date regdate;
-	
+
 	private String checkPassword;
-	
+
 	// 비밀번호 확인
 	public boolean isPwEqualToCheckPw() {
 		return password.equals(checkPassword);
+	}
+
+	public boolean matchPassword(String password) {
+		return password.equals(password);
 	}
 
 	public Long getIdx() {
@@ -89,18 +93,18 @@ public class Employee implements Serializable {
 		this.regdate = regdate;
 	}
 
-	@Override
-	public String toString() {
-		return "UserDomain [idx=" + idx + ", id=" + id + ", email=" + email + ", name=" + name + ", password="
-				+ password + ", regdate=" + regdate + "]";
-	}
-
 	public String getCheckPassword() {
 		return checkPassword;
 	}
 
 	public void setCheckPassword(String checkPassword) {
 		this.checkPassword = checkPassword;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDomain [idx=" + idx + ", id=" + id + ", email=" + email + ", name=" + name + ", password="
+				+ password + ", regdate=" + regdate + "]";
 	}
 
 }

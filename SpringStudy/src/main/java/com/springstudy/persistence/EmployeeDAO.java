@@ -2,7 +2,7 @@ package com.springstudy.persistence;
 
 import java.util.List;
 
-import com.springstudy.domain.Employee;
+import com.springstudy.entity.Employee;
 
 public interface EmployeeDAO {
 
@@ -10,9 +10,11 @@ public interface EmployeeDAO {
 
 	public List<Employee> getAllEmployees();
 
-	public void deleteEmployee(Integer employeeId);
+	public void deleteEmployee(Long idx);
 
 	public Employee updateEmployee(Employee employee);
 
-	public Employee getEmployee(int employeeid);
+	public Employee getEmployee(Long idx);
+	
+	public Employee getEmployee(String id);
 }

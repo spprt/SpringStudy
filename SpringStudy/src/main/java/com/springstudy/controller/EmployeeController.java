@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springstudy.domain.Employee;
+import com.springstudy.entity.Employee;
 import com.springstudy.service.EmployeeService;
 
 @Controller
@@ -22,7 +22,9 @@ public class EmployeeController {
 	private static final Logger logger = Logger.getLogger(EmployeeController.class);
 
 	public EmployeeController() {
-		System.out.println("EmployeeController()");
+		if (logger.isInfoEnabled()) {
+			logger.info("EmployeeController()");
+		}
 	}
 
 	@Autowired
@@ -44,13 +46,13 @@ public class EmployeeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/empTest")
-	public ModelAndView listEmployee(ModelAndView model) throws IOException {
-		List<Employee> listEmployee = employeeService.getAllEmployees();
-		model.addObject("listEmployee", listEmployee);
-		model.setViewName("home");
-		return model;
-	}
+//	@RequestMapping(value = "/empTest")
+//	public ModelAndView listEmployee(ModelAndView model) throws IOException {
+//		List<Employee> listEmployee = employeeService.getAllEmployees();
+//		model.addObject("listEmployee", listEmployee);
+//		model.setViewName("home");
+//		return model;
+//	}
 
 	@RequestMapping(value = "/newEmployee", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
@@ -74,15 +76,15 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.GET)
 	public ModelAndView deleteEmployee(HttpServletRequest request) {
-		int employeeId = Integer.parseInt(request.getParameter("id"));
-		employeeService.deleteEmployee(employeeId);
+		Long idx = Long.parseLong(request.getParameter("id"));
+		employeeService.deleteEmployee(idx);
 		return new ModelAndView("redirect:/");
 	}
 
 	@RequestMapping(value = "/editEmployee", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) {
-		int employeeId = Integer.parseInt(request.getParameter("id"));
-		Employee employee = employeeService.getEmployee(employeeId);
+		Long idx = Long.parseLong(request.getParameter("id"));
+		Employee employee = employeeService.getEmployee(idx);
 		ModelAndView model = new ModelAndView("EmployeeForm");
 		model.addObject("employee", employee);
 

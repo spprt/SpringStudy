@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <%@ include file="/WEB-INF/views/includes/00_head.jsp" %>
+<%@ include file="/WEB-INF/views/includes/00_head.jsp" %>
 </head>
 <body class="main-pages">
     <div class="container">
@@ -12,7 +12,6 @@
             <h1>Hello, ${authInfo.name } World!</h1>
             <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         </div>
-
         <div class="row marketing">
             <div class="col-lg-6">
                 <h4>Subheading</h4>
@@ -36,9 +35,7 @@
                 <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
             </div>
         </div>
-
         <%@ include file="/WEB-INF/views/includes/09_footer.jsp" %>
-
     </div>
 </body>
 </html>

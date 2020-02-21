@@ -16,8 +16,6 @@
 
         <div class="signup-box-body">
             <p class="box-msg">Register a new membership</p>
-
-<%--             <form:form role="form" commandName="registerRequest" action="${pageContext.request.contextPath }/signup/step3" method="post"> --%>
             <form:form role="form" modelAttribute="employee" action="${pageContext.request.contextPath }/saveEmployee" method="post">
                 <div class="form-group has-feedback">
                     <form:input type="text" class="form-control" placeholder="ID" path="id"/>
@@ -59,6 +57,5 @@
             <a href="login.html" class="text-center">I already have a membership</a>
         </div>
     </div>
-
 </body>
 </html>

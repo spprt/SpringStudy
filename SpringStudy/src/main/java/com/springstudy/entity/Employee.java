@@ -10,9 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
-
 @Entity(name = "user")
 @Table(name = "user")
 public class Employee implements Serializable {
@@ -106,8 +103,8 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserDomain [idx=" + idx + ", id=" + id + ", email=" + email + ", name=" + name + ", password="
-				+ password + ", regdate=" + regdate + "]";
+		return "Employee [idx=" + idx + ", id=" + id + ", email=" + email + ", name=" + name + ", password=" + password
+				+ ", regdate=" + regdate + ", checkPassword=" + checkPassword + "]";
 	}
 
 }

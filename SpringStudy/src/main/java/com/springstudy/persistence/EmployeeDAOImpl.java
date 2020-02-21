@@ -23,7 +23,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllEmployees() {
-		return sessionFactory.getCurrentSession().createQuery("from Employee").list();
+		return sessionFactory.getCurrentSession().createQuery("from user").list();
 	}
 
 	@Override

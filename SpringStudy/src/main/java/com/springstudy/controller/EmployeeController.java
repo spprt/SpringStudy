@@ -1,8 +1,5 @@
 package com.springstudy.controller;
 
-import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
@@ -46,14 +43,6 @@ public class EmployeeController {
 		return mv;
 	}
 
-//	@RequestMapping(value = "/empTest")
-//	public ModelAndView listEmployee(ModelAndView model) throws IOException {
-//		List<Employee> listEmployee = employeeService.getAllEmployees();
-//		model.addObject("listEmployee", listEmployee);
-//		model.setViewName("home");
-//		return model;
-//	}
-
 	@RequestMapping(value = "/newEmployee", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
 		Employee employee = new Employee();
@@ -64,8 +53,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
 	public ModelAndView saveEmployee(@ModelAttribute Employee employee) {
-		System.out.println(employee.getIdx());
-		if (employee.getIdx() == null) { // if employee id is 0 then creating the
+ 		if (employee.getIdx() == null) { // if employee id is 0 then creating the
 			// employee other updating the employee
 			employeeService.addEmployee(employee);
 		} else {

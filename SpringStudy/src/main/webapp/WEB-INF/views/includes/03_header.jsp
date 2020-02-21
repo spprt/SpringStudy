@@ -16,4 +16,5 @@
                 </ul>
             </nav>
             <h3 class="text-muted"><b>Support</b>Dev</h3>
+            <li role="presentation"><a href="${pageContext.request.contextPath }/board/list">Board</a></li>
         </div>

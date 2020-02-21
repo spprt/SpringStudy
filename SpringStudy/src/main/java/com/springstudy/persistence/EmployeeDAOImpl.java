@@ -1,6 +1,5 @@
 package com.springstudy.persistence;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -48,13 +47,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public Employee getEmployee(String id) {
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("com.kcube.sys.emp.Employee.selectUserByLoginId");
-		sessionFactory.getCurrentSession().getNamedQuery("userFindById");
-		query.setString("id", id);
-		Iterator<Employee> i = query.iterate();
-		if (i.hasNext()) {
-			return (Employee) i.next();
-		}
-		return null;
+//		Query query = sessionFactory.getCurrentSession().getNamedQuery("User_findById");
+		Query query = sessionFactory.getCurrentSession().createQuery("from user u where u.id =:id");
+		query.setParameter("id", id);
+
+		Employee emp = (Employee) query.uniqueResult();
+		return emp;
 	}
 }

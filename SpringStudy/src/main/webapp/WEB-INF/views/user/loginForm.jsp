@@ -11,7 +11,7 @@
 
     <div class="signup-box">
         <div class="signup-logo">
-            <a href="#"><b>tody</b>Dev</a>
+            <a href="#"><b>support</b>Dev</a>
         </div>
 
         <div class="signup-box-body">

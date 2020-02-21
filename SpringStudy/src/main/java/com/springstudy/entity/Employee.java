@@ -10,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+@Entity(name = "user")
 @Table(name = "user")
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 7192831414339863019L;

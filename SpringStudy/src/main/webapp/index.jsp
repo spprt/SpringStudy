@@ -6,13 +6,10 @@
     <%@ include file="/WEB-INF/views/includes/00_head.jsp" %>
 </head>
 <body class="main-pages">
-
     <div class="container">
-
         <%@ include file="/WEB-INF/views/includes/03_header.jsp" %>
-
         <div class="jumbotron">
-            <h1>Hello, World !</h1>
+            <h1>Hello, ${authInfo.name } World!</h1>
             <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         </div>
 

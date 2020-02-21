@@ -10,7 +10,6 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/action-servlet.xml</config>
-		<config>src/main/webapp/WEB-INF/spring/context-datasource.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/context-root.xml</config>
 	</autoconfigs>
 	<configSets>

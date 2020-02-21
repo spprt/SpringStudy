@@ -20,10 +20,10 @@ import com.springstudy.util.LoginCommand;
 
 @Controller
 public class LoginController {
-	
+
 	@Resource(name = "employeeService")
 	private EmployeeService empSer;
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginForm(LoginCommand loginCommand,
 			@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie) throws Exception {
@@ -46,7 +46,8 @@ public class LoginController {
 
 		try {
 			AuthInfo authInfo = empSer.loginAuth(loginCommand);
-			session.setAttribute("autoInfo", authInfo);
+			session.setAttribute("authInfo", authInfo);
+			System.out.println("authInfo.getName()" + authInfo.getName());
 
 			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId());
 			rememberCookie.setPath("/");
@@ -62,8 +63,14 @@ public class LoginController {
 			return mv;
 		}
 
-		ModelAndView mv = new ModelAndView("login/loginSuccess");
+		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
+	}
 
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("redirect:/");
+		return mv;
 	}
 }

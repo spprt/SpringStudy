@@ -44,7 +44,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute Board board) throws Exception {
 		service.write(board);
-		return "redirect:/board/list";
+		return "redirect:/board/view?id=" + board.getId();
 	}
 
 	@RequestMapping(value = "/board/view", method = RequestMethod.GET)
@@ -62,10 +62,10 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/update", method = RequestMethod.POST)
-	public ModelAndView update(@ModelAttribute Board board) throws Exception {
+	public String update(@ModelAttribute Board board) throws Exception {
 		logger.info("update :::: " + board.getId());
 		service.update(board);
-		return new ModelAndView("/board/view");
+		return "redirect:/board/view?id=" + board.getId();
 	}
 
 	@RequestMapping(value = "/board/delete", method = RequestMethod.GET)

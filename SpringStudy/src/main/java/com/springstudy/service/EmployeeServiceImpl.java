@@ -47,7 +47,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	public Employee updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
 		return employeeDAO.updateEmployee(employee);
 	}
 
@@ -58,13 +57,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public AuthInfo loginAuth(LoginCommand loginCommand) throws Exception {
 		Employee emp = getEmployee(loginCommand.getId());
-		System.out.println(loginCommand.getId());
-		System.out.println(loginCommand.getPassword());
 		if (emp == null) {
 			throw new IdPasswordNotMatchingException();
 		}
-		System.out.println("emp.getPassword() ::: " + emp.getPassword());
-		System.out.println("loginCommand.getPassword() ::: " + loginCommand.getPassword());
 		if (!emp.matchPassword(loginCommand.getPassword())) {
 			throw new IdPasswordNotMatchingException();
 		}

@@ -1,7 +1,6 @@
 package com.springstudy.persistence;
 
 import java.util.List;
-import java.util.Map;
 
 import com.springstudy.entity.Board;
 import com.springstudy.util.Criteria;
@@ -20,5 +19,5 @@ public interface BoardDAO {
 
 	public void delete(Long id) throws Exception;
 
-	public List<Board> selectList(int requestPage);
+	public List<Board> selectList(Criteria cri);
 }

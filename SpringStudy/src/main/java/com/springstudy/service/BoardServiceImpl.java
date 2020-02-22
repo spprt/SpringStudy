@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.springstudy.entity.Board;
 import com.springstudy.persistence.BoardDAO;
+import com.springstudy.util.Criteria;
 
 @Service("boardService")
 @Transactional
@@ -50,7 +51,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> selectList(int requestPage) {
-		return boardDAO.selectList(requestPage);
+	public List<Board> selectList(Criteria cri) {
+		return boardDAO.selectList(cri);
 	}
 }

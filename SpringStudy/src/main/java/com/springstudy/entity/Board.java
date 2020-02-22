@@ -12,6 +12,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
 @Entity(name = "board")
 @Table(name = "board")
 public class Board implements Serializable {
@@ -36,11 +39,14 @@ public class Board implements Serializable {
 	@Column(name = "ip")
 	private String ip;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "reg_date", updatable = false, nullable = false)
+	@Generated(GenerationTime.INSERT)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "reg_date", insertable = false)
 	private Date regDate;
 
-	@Column(name = "mod_date")
+	@Generated(GenerationTime.ALWAYS)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "mod_date", updatable = false, insertable = false)
 	private Date modDate;
 
 	public Long getId() {

@@ -21,7 +21,7 @@
 					</tr>	
 					<tr>
 						<td>
-							<label for="writer">작성자</label><input type="text" id="writer" name="writer" />
+							<label for="writer">작성자</label><input type="text" id="writer" name="writer" value="${authInfo.name}" />
 						</td>
 					<tr>
 					<tr>

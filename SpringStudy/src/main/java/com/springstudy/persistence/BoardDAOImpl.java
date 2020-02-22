@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.springstudy.entity.Board;
+import com.springstudy.util.Criteria;
 
 @Repository("boardDAO")
 public class BoardDAOImpl implements BoardDAO {
@@ -54,14 +55,12 @@ public class BoardDAOImpl implements BoardDAO {
 		}
 	}
 
-	private static int numPerPage = 10;
-	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Board> selectList(int requestPage) {
+	public List<Board> selectList(Criteria cri) {
 		Query query = getSession().createQuery("from board order by id desc");
-		query.setFirstResult((requestPage-1) * numPerPage);
-		query.setMaxResults(numPerPage);
+		query.setFirstResult((cri.getPage() -1) * cri.getPerPageNum());
+		query.setMaxResults(cri.getPerPageNum());
 		return query.list();
 	}
 }

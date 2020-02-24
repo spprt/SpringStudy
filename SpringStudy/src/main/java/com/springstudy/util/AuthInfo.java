@@ -1,5 +1,8 @@
 package com.springstudy.util;
 
+/**
+ * 로그인 정보를 담는 클래스
+ */
 public class AuthInfo {
 
 	private String id;

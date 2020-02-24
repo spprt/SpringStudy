@@ -2,11 +2,15 @@ package com.springstudy.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.springstudy.entity.Board;
 import com.springstudy.util.Criteria;
 
 public interface BoardService {
 	public void write(Board board) throws Exception;
+	
+	public void write(Board board, MultipartHttpServletRequest mpReq) throws Exception;
 
 	public List<Board> list() throws Exception;
 

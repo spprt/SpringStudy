@@ -10,7 +10,7 @@
 	<div class="continer">
 	BOARD WRITE PAGE
 	<section id="container">
-		<form role="form" method="post" action="${pageContext.request.contextPath }/board/save">
+		<form role="form" method="post" action="${pageContext.request.contextPath }/board/save" enctype="multipart/form-data">
 		
 		<div class="form-group">
 			<label for="subject" class="col-sm-2 control-label">제목</label>
@@ -23,6 +23,9 @@
 		<div class="form-group">
 			<label for="content" class="col-sm-2 control-label">내용</label>
 			<textarea id="content" name="content" class="form-control" ><c:out value="${read.content}" /></textarea>
+		</div>
+		<div>
+			<input type="file" name="file">	
 		</div>
 		<div>
 			<button type="submit" class="btn">작성</button>

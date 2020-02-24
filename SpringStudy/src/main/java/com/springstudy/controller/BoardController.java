@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springstudy.entity.Board;
@@ -34,7 +35,7 @@ public class BoardController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalCnt());
-		
+
 		mv.addObject("list", service.selectList(cri));
 		mv.addObject("page", pageMaker);
 
@@ -42,8 +43,8 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute Board board) throws Exception {
-		service.write(board);
+	public String save(@ModelAttribute Board board, MultipartHttpServletRequest mpReq) throws Exception {
+		service.write(board, mpReq);
 		return "redirect:/board/view?id=" + board.getId();
 	}
 

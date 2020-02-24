@@ -1,6 +1,7 @@
 package com.springstudy.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,6 +50,11 @@ public class Board implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "mod_date", updatable = false, insertable = false)
 	private Date modDate;
+
+//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinColumn(name = "docid", referencedColumnName = "id")
+	@OneToMany(mappedBy = "doc")
+	private Collection<BoardFile> files;
 
 	public Long getId() {
 		return id;
@@ -111,5 +118,13 @@ public class Board implements Serializable {
 
 	public void setModDate(Date modDate) {
 		this.modDate = modDate;
+	}
+
+	public Collection<BoardFile> getFiles() {
+		return files;
+	}
+
+	public void setFiles(Collection<BoardFile> files) {
+		this.files = files;
 	}
 }

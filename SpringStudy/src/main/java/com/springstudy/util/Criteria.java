@@ -1,5 +1,8 @@
 package com.springstudy.util;
 
+/**
+ * 페이지 정보를 담는 클래스
+ */
 public class Criteria {
 	private int page;
 	private int perPageNum;

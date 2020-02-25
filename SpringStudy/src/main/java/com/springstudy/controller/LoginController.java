@@ -28,7 +28,7 @@ public class LoginController {
 	public ModelAndView loginForm(LoginCommand loginCommand,
 			@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie) throws Exception {
 		if (rememberCookie != null) {
-			loginCommand.setId(rememberCookie.getValue());
+			loginCommand.setEmail(rememberCookie.getValue());
 			loginCommand.setRememberId(true);
 		}
 
@@ -49,7 +49,7 @@ public class LoginController {
 			session.setAttribute("authInfo", authInfo);
 			System.out.println("authInfo.getName()" + authInfo.getName());
 
-			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId());
+			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getEmail());
 			rememberCookie.setPath("/");
 			if (loginCommand.isRememberId()) {
 				rememberCookie.setMaxAge(60 * 60 * 24 * 7);

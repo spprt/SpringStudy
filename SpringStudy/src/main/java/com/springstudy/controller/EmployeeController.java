@@ -53,7 +53,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
 	public ModelAndView saveEmployee(@ModelAttribute Employee employee) {
- 		if (employee.getIdx() == null) { // if employee id is 0 then creating the
+ 		if (employee.getId() == null) { // if employee id is 0 then creating the
 			// employee other updating the employee
 			employeeService.addEmployee(employee);
 		} else {
@@ -64,15 +64,15 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.GET)
 	public ModelAndView deleteEmployee(HttpServletRequest request) {
-		Long idx = Long.parseLong(request.getParameter("id"));
-		employeeService.deleteEmployee(idx);
+		Long id = Long.parseLong(request.getParameter("id"));
+		employeeService.deleteEmployee(id);
 		return new ModelAndView("redirect:/");
 	}
 
 	@RequestMapping(value = "/editEmployee", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) {
-		Long idx = Long.parseLong(request.getParameter("id"));
-		Employee employee = employeeService.getEmployee(idx);
+		Long id = Long.parseLong(request.getParameter("id"));
+		Employee employee = employeeService.getEmployee(id);
 		ModelAndView model = new ModelAndView("EmployeeForm");
 		model.addObject("employee", employee);
 

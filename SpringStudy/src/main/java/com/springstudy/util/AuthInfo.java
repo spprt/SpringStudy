@@ -5,27 +5,27 @@ package com.springstudy.util;
  */
 public class AuthInfo {
 
-	private String id;
+	private String email;
 	private String name;
 //	private int grade;
 
-	public AuthInfo(String id, String name) {
-		this.id = id;
+	public AuthInfo(String email, String name) {
+		this.email = email;
 		this.name = name;
 	}
 
-//	public AuthInfo(String id, String name, int grade) {
-//		this.id = id;
+//	public AuthInfo(String email, String name, int grade) {
+//		this.email = email;
 //		this.name = name;
 //		this.grade = grade;
 //	}
 
-	public String getId() {
-		return id;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getName() {

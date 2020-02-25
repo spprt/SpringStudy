@@ -42,8 +42,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDAO.getEmployee(idx);
 	}
 
-	public Employee getEmployee(String id) {
-		return employeeDAO.getEmployee(id);
+	public Employee getEmployee(String email) {
+		return employeeDAO.getEmployee(email);
 	}
 
 	public Employee updateEmployee(Employee employee) {
@@ -56,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public AuthInfo loginAuth(LoginCommand loginCommand) throws Exception {
-		Employee emp = getEmployee(loginCommand.getId());
+		Employee emp = getEmployee(loginCommand.getEmail());
 		if (emp == null) {
 			throw new IdPasswordNotMatchingException();
 		}
@@ -64,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			throw new IdPasswordNotMatchingException();
 		}
 
-		return new AuthInfo(emp.getId(), emp.getName());
+		return new AuthInfo(emp.getEmail(), emp.getName());
 	}
 
 }

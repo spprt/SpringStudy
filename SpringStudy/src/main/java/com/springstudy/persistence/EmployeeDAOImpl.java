@@ -27,8 +27,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public void deleteEmployee(Long idx) {
-		Employee employee = (Employee) sessionFactory.getCurrentSession().load(Employee.class, idx);
+	public void deleteEmployee(Long id) {
+		Employee employee = (Employee) sessionFactory.getCurrentSession().load(Employee.class, id);
 		if (null != employee) {
 			this.sessionFactory.getCurrentSession().delete(employee);
 		}
@@ -41,15 +41,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee getEmployee(Long idx) {
-		return (Employee) sessionFactory.getCurrentSession().get(Employee.class, idx);
+	public Employee getEmployee(Long id) {
+		return (Employee) sessionFactory.getCurrentSession().get(Employee.class, id);
 	}
 
 	@Override
-	public Employee getEmployee(String id) {
-//		Query query = sessionFactory.getCurrentSession().getNamedQuery("User_findById");
-		Query query = sessionFactory.getCurrentSession().createQuery("from user u where u.id =:id");
-		query.setParameter("id", id);
+	public Employee getEmployee(String email) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from user u where u.email =:email");
+		query.setParameter("email", email);
 
 		Employee emp = (Employee) query.uniqueResult();
 		return emp;

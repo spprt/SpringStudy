@@ -18,9 +18,9 @@
             <p class="box-msg">Register a new membership</p>
             <form:form role="form" modelAttribute="employee" action="${pageContext.request.contextPath }/saveEmployee" method="post">
                 <div class="form-group has-feedback">
-                    <form:input type="text" class="form-control" placeholder="ID" path="id"/>
+                    <form:input type="text" class="form-control" placeholder="EMAIL" path="email"/>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    <form:errors path="id" class="signup-errors"/>
+                    <form:errors path="email" class="signup-errors"/>
                 </div>
                 <div class="form-group has-feedback">
                     <form:input type="password" class="form-control" placeholder="PASSWORD" path="password"/>
@@ -36,11 +36,6 @@
                     <form:input type="text" class="form-control" placeholder="NAME" path="name"/>
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     <form:errors path="name" class="signup-errors"/>
-                </div>
-                <div class="form-group has-feedback">
-                    <form:input type="email" class="form-control" placeholder="EMAIL" path="email"/>
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    <form:errors path="email" class="signup-errors"/>
                 </div>
                 <div class="row">
                     <div class="col-xs-8">

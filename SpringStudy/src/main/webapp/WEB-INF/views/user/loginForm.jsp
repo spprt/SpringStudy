@@ -19,9 +19,9 @@
 
             <form:form role="form" commandName="loginCommand" action="${pageContext.request.contextPath }/signin" method="post">
                 <div class="form-group has-feedback">
-                    <form:input type="text" class="form-control" placeholder="ID" path="id"/>
+                    <form:input type="text" class="form-control" placeholder="EMAIL" path="email"/>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    <form:errors path="id" class="signup-errors"/>
+                    <form:errors path="email" class="signup-errors"/>
                 </div>
                 <div class="form-group has-feedback">
                     <form:input type="password" class="form-control" placeholder="PASSWORD" path="password"/>
@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-xs-8">
                         <label class="btn">
-                            <form:checkbox path="rememberId"/> 아이디 기억하기
+                            <form:checkbox path="rememberId"/> 이메일 기억하기
                         </label>
                     </div>
                     <div class="col-xs-3">

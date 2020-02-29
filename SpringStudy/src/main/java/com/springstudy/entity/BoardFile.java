@@ -22,6 +22,9 @@ public class BoardFile extends DocFile {
 
 	private static final long serialVersionUID = -1720319848684784737L;
 
+	public BoardFile() {
+	}
+
 	public BoardFile(Board doc) {
 		super();
 		this.doc = doc;
@@ -34,7 +37,7 @@ public class BoardFile extends DocFile {
 	@ManyToOne
 	@JoinColumn(name = "docid")
 	private Board doc;
-	
+
 	@Column(name = "file_name")
 	private String fileName;
 
@@ -49,6 +52,11 @@ public class BoardFile extends DocFile {
 	@Column(name = "reg_date", insertable = false)
 	private Date regdate;
 	
+
+	public Long getFileid() {
+		return fileid;
+	}
+
 	public String getFileName() {
 		return fileName;
 	}

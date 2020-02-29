@@ -4,14 +4,25 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/includes/00_head.jsp" %>
-    <title>board list | supportDev</title>
 </head>
 <body>
-	<div class="continer">
-	BOARD LIST PAGE
-	<selection id="container">
+    <%@ include file="/WEB-INF/views/includes/03_header.jsp" %>
+	<div class="container">
+	<div class="">
+		<c:catch>
+			<c:choose>
+				<c:when test="${not empty authInfo}">
+					<div>
+						<button type="button" class="btn btn-sm" id="btnWriteForm"><a href="${pageContext.request.contextPath }/board/write">글쓰기</a></button>
+					</div>
+				</c:when>
+			</c:choose>
+		</c:catch>
 		<form role="form" method="get">
 			<table class="table table-hover">
+				<colgroup>
+					<col width="60px"/><col/><col width="100px"/><col width="120px"/>
+				</colgroup>
 				<thead>
 					<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
 				</thead>
@@ -19,8 +30,8 @@
 					<tr>
 						<td><c:out value="${list.id}"/></td>
 						<td><a href="${pageContext.request.contextPath }/board/view?id=${list.id}"><c:out value="${list.subject}"/></a></td>
-						<td><c:out value="${list.writer}"/></td>
-						<td><c:out value="${list.regDate}"/></td>
+						<td><c:out value="${list.writerName}"/></td>
+						<td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -46,7 +57,7 @@
 				</ul>
 			</div>
 		</form>
-	<a href="${pageContext.request.contextPath }/board/write">글쓰기</a>
+		</div>
 	</div>
 </body>
 </html>

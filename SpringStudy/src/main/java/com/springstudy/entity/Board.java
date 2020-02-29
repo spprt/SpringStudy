@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,8 +30,11 @@ public class Board implements Serializable {
 	@Column(name = "subject")
 	private String subject;
 
-	@Column(name = "writer")
-	private String writer;
+	@Column(name = "writer_id")
+	private Long writerId;
+
+	@Column(name = "writer_name")
+	private String writerName;
 
 	@Column(name = "content")
 	private String content;
@@ -51,9 +55,10 @@ public class Board implements Serializable {
 	@Column(name = "mod_date", updatable = false, insertable = false)
 	private Date modDate;
 
-//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	// @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval =
+	// true)
 //	@JoinColumn(name = "docid", referencedColumnName = "id")
-	@OneToMany(mappedBy = "doc")
+	@OneToMany(mappedBy = "doc", fetch = FetchType.EAGER)
 	private Collection<BoardFile> files;
 
 	public Long getId() {
@@ -72,12 +77,20 @@ public class Board implements Serializable {
 		this.subject = subject;
 	}
 
-	public String getWriter() {
-		return writer;
+	public Long getWriterId() {
+		return writerId;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setWriterId(Long writerId) {
+		this.writerId = writerId;
+	}
+
+	public String getWriterName() {
+		return writerName;
+	}
+
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
 
 	public String getContent() {

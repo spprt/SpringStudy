@@ -1,3 +1,3 @@
         <footer class="footer">
-            <p>© Company 2019</p>
+            <p>© Company 2020</p>
         </footer>

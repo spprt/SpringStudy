@@ -5,11 +5,13 @@ package com.springstudy.util;
  */
 public class AuthInfo {
 
+	private Long id;
 	private String email;
 	private String name;
 //	private int grade;
 
-	public AuthInfo(String email, String name) {
+	public AuthInfo(Long id, String email, String name) {
+		this.id = id;
 		this.email = email;
 		this.name = name;
 	}
@@ -19,6 +21,13 @@ public class AuthInfo {
 //		this.name = name;
 //		this.grade = grade;
 //	}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getEmail() {
 		return email;

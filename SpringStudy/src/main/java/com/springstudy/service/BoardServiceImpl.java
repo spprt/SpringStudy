@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springstudy.entity.Board;
+import com.springstudy.entity.BoardFile;
 import com.springstudy.entity.DocFile;
 import com.springstudy.persistence.BoardDAO;
 import com.springstudy.util.Criteria;
@@ -70,5 +71,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> selectList(Criteria cri) {
 		return boardDAO.selectList(cri);
+	}
+
+	@Override
+	public BoardFile readFile(Long id) throws Exception {
+		return boardDAO.readFile(id);
 	}
 }

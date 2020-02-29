@@ -67,7 +67,6 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	public void insertFile(DocFile file, Board board) throws Exception {
-		System.out.println(file.toString());
 		DocFile f = new BoardFile(board);
 		f.setDocid(file.getDocid());
 		f.setFileName(file.getFileName());
@@ -75,5 +74,10 @@ public class BoardDAOImpl implements BoardDAO {
 		f.setStoredName(file.getStoredName());
 
 		getSession().save(f);
+	}
+
+	@Override
+	public BoardFile readFile(Long id) throws Exception {
+		return (BoardFile) getSession().get(BoardFile.class, id);
 	}
 }

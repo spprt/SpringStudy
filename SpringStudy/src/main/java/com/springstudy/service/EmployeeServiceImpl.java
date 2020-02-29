@@ -64,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			throw new IdPasswordNotMatchingException();
 		}
 
-		return new AuthInfo(emp.getEmail(), emp.getName());
+		return new AuthInfo(emp.getId(), emp.getEmail(), emp.getName());
 	}
 
 }

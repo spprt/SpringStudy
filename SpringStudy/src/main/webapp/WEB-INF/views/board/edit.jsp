@@ -7,9 +7,8 @@
     <title>board write | supportDev</title>
 </head>
 <body>
-	<div class="continer">
-	BOARD EDIT PAGE
-	<section id="container">
+	<%@ include file="/WEB-INF/views/includes/03_header.jsp" %>
+	<div class="container">
 		<form role="form" method="post" action="${pageContext.request.contextPath }/board/update">
 		<input type="hidden" name="id" value="${read.id}" readonly="readonly"/>
 		<input type="hidden" name="id" value="${read.regDate}" readonly="readonly"/>
@@ -18,8 +17,8 @@
 			<input type="text" id="subject" name="subject" class="form-control" value="${read.subject}"/>
 		</div>
 		<div class="form-group">
-			<label for="writer" class="col-sm-2 control-label">작성자</label>
-			<input type="text" id="writer" name="writer" class="form-control" value="${read.writer}"/>
+			<label for="writerName" class="col-sm-2 control-label">작성자</label>
+			<input type="text" id="writerName" name="writerName" class="form-control" value="${read.writerName}"/>
 		</div>
 		<div class="form-group">
 			<label for="content" class="col-sm-2 control-label">내용</label>
@@ -30,7 +29,6 @@
 			<a href="${pageContext.request.contextPath }/board/list"><button type="button" class="list_btn btn btn-primary">목록</button></a>	
 		</div>
 		</form>
-	</section>
 	</div>
 </body>
 </html>

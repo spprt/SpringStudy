@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springstudy.entity.Board;
+import com.springstudy.entity.BoardFile;
 import com.springstudy.util.Criteria;
 
 public interface BoardService {
 	public void write(Board board) throws Exception;
-	
+
 	public void write(Board board, MultipartHttpServletRequest mpReq) throws Exception;
 
 	public List<Board> list() throws Exception;
@@ -23,4 +24,6 @@ public interface BoardService {
 	public void delete(Long id) throws Exception;
 
 	public List<Board> selectList(Criteria cri);
+
+	public BoardFile readFile(Long id) throws Exception;
 }

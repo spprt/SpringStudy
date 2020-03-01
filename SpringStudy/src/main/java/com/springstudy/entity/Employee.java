@@ -38,10 +38,6 @@ public class Employee implements Serializable {
 		return password.equals(checkPassword);
 	}
 
-	public boolean matchPassword(String password) {
-		return password.equals(password);
-	}
-
 	public Long getId() {
 		return id;
 	}

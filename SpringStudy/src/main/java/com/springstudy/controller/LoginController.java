@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.jboss.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -20,6 +21,7 @@ import com.springstudy.util.LoginCommand;
 
 @Controller
 public class LoginController {
+	private static final Logger logger = Logger.getLogger(EmployeeController.class);
 
 	@Resource(name = "employeeService")
 	private EmployeeService empSer;
@@ -47,7 +49,7 @@ public class LoginController {
 		try {
 			AuthInfo authInfo = empSer.loginAuth(loginCommand);
 			session.setAttribute("authInfo", authInfo);
-			System.out.println("authInfo.getName()" + authInfo.getName());
+			logger.info("authInfo.getName()" + authInfo.getName());
 
 			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getEmail());
 			rememberCookie.setPath("/");

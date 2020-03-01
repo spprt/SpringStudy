@@ -55,12 +55,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public AuthInfo loginAuth(LoginCommand loginCommand) throws Exception {
+	public AuthInfo loginAuth(LoginCommand loginCommand) {
 		Employee emp = getEmployee(loginCommand.getEmail());
 		if (emp == null) {
 			throw new IdPasswordNotMatchingException();
 		}
-		if (!emp.matchPassword(loginCommand.getPassword())) {
+		if (!emp.getPassword().equals(loginCommand.getPassword())) {
 			throw new IdPasswordNotMatchingException();
 		}
 

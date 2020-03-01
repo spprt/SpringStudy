@@ -17,5 +17,5 @@ public interface EmployeeService {
 
 	public Employee updateEmployee(Employee employee);
 
-	AuthInfo loginAuth(LoginCommand loginCommand) throws Exception;
+	AuthInfo loginAuth(LoginCommand loginCommand);
 }

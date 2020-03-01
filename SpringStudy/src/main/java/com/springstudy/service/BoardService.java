@@ -17,6 +17,8 @@ public interface BoardService {
 
 	public int totalCnt() throws Exception;
 
+	public int totalCnt(Long empid) throws Exception;
+
 	public Board read(Long id) throws Exception;
 
 	public void update(Board board) throws Exception;
@@ -24,6 +26,8 @@ public interface BoardService {
 	public void delete(Long id) throws Exception;
 
 	public List<Board> selectList(Criteria cri);
+
+	public List<Board> selectList(Criteria cri, Long empid);
 
 	public BoardFile readFile(Long id) throws Exception;
 }

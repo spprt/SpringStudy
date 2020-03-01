@@ -8,6 +8,7 @@
 <body>
     <%@ include file="/WEB-INF/views/includes/03_header.jsp" %>
 	<div class="container">
+	${writerName}님의 다른 글 보기
 	<div class="">
 		<c:catch>
 			<c:choose>
@@ -30,18 +31,7 @@
 					<tr>
 						<td><c:out value="${list.id}"/></td>
 						<td><a href="${pageContext.request.contextPath }/board/view?id=${list.id}"><c:out value="${list.subject}"/></a></td>
-						<td>
-						<c:catch>
-							<c:choose>
-								<c:when test="${not empty list.writerId}">
-									<a href="${pageContext.request.contextPath }/board/articles?empid=${list.writerId}"><c:out value="${list.writerName}"/></a>
-								</c:when>
-								<c:otherwise>
-									<c:out value="${list.writerName}"/>
-								</c:otherwise>
-							</c:choose>
-						</c:catch>
-						</td>
+						<td><c:out value="${list.writerName}"/></td>
 						<td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
 					</tr>
 				</c:forEach>

@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.springstudy.entity.Board;
 import com.springstudy.entity.BoardFile;
+import com.springstudy.entity.Employee;
 import com.springstudy.service.BoardService;
+import com.springstudy.service.EmployeeService;
 import com.springstudy.util.AuthInfo;
 import com.springstudy.util.Criteria;
 import com.springstudy.util.PageMaker;
@@ -30,14 +32,17 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 
+	@Autowired
+	private EmployeeService empSer;
+
 	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
-	public ModelAndView goWrite() throws Exception {
+	public ModelAndView write() throws Exception {
 		ModelAndView mv = new ModelAndView("board/write");
 		return mv;
 	}
 
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-	public ModelAndView goList(Model model, Criteria cri) throws Exception {
+	public ModelAndView list(Model model, Criteria cri) throws Exception {
 		ModelAndView mv = new ModelAndView("board/list");
 
 		PageMaker pageMaker = new PageMaker();
@@ -46,6 +51,28 @@ public class BoardController {
 
 		mv.addObject("list", service.selectList(cri));
 		mv.addObject("page", pageMaker);
+
+		return mv;
+	}
+
+	@RequestMapping(value = "/board/articles", method = RequestMethod.GET)
+	public ModelAndView articles(Long empid, Model model, Criteria cri) throws Exception {
+		ModelAndView mv = new ModelAndView("board/articles");
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalCnt(empid));
+
+		mv.addObject("list", service.selectList(cri, empid));
+		mv.addObject("page", pageMaker);
+
+		try {
+			Employee emp = empSer.getEmployee(empid);
+			if (null != emp)
+				mv.addObject("writerName", emp.getName());
+		} catch (Exception e) {
+			logger.info("BoardController : not Matched employee");
+		}
 
 		return mv;
 	}
@@ -75,7 +102,8 @@ public class BoardController {
 		String fileName = file.getFileName();
 
 		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
-		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\repository\\" + storedName));
+		byte fileByte[] = org.apache.commons.io.FileUtils
+				.readFileToByteArray(new File("C:\\repository\\" + storedName));
 
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);

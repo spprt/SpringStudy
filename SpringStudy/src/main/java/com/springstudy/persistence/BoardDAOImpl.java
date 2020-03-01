@@ -34,9 +34,22 @@ public class BoardDAOImpl implements BoardDAO {
 		return getSession().createQuery("from board").list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Board> list(Long empid) throws Exception {
+		Query query = getSession().createQuery("from board where writerId = :empid");
+		query.setParameter("empid", empid);
+		return query.list();
+	}
+
 	@Override
 	public int totalCount() throws Exception {
 		return list().size();
+	}
+
+	@Override
+	public int totalCount(Long empid) throws Exception {
+		return list(empid).size();
 	}
 
 	@Override
@@ -61,6 +74,16 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<Board> selectList(Criteria cri) {
 		Query query = getSession().createQuery("from board order by id desc");
+		query.setFirstResult((cri.getPage() - 1) * cri.getPerPageNum());
+		query.setMaxResults(cri.getPerPageNum());
+		return query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Board> selectList(Criteria cri, Long empid) {
+		Query query = getSession().createQuery("from board where writerId = :empid order by id desc");
+		query.setParameter("empid", empid);
 		query.setFirstResult((cri.getPage() - 1) * cri.getPerPageNum());
 		query.setMaxResults(cri.getPerPageNum());
 		return query.list();

@@ -13,7 +13,11 @@ public interface BoardDAO {
 
 	public List<Board> list() throws Exception;
 
+	public List<Board> list(Long empid) throws Exception;
+
 	public int totalCount() throws Exception;
+
+	public int totalCount(Long empid) throws Exception;
 
 	public Board read(Long id) throws Exception;
 
@@ -22,6 +26,8 @@ public interface BoardDAO {
 	public void delete(Long id) throws Exception;
 
 	public List<Board> selectList(Criteria cri);
+
+	public List<Board> selectList(Criteria cri, Long empid);
 
 	public void insertFile(DocFile file, Board board) throws Exception;
 

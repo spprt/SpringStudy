@@ -47,11 +47,18 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.list();
 	}
 
+	/** to-do **/
 	@Override
 	public int totalCnt() throws Exception {
-		// to-do
 		return boardDAO.totalCount();
 	}
+
+	@Override
+	public int totalCnt(Long empid) throws Exception {
+		return boardDAO.totalCount(empid);
+	}
+
+	/** to-do **/
 
 	@Override
 	public Board read(Long id) throws Exception {
@@ -74,7 +81,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public List<Board> selectList(Criteria cri, Long empid) {
+		return boardDAO.selectList(cri, empid);
+	}
+
+	@Override
 	public BoardFile readFile(Long id) throws Exception {
 		return boardDAO.readFile(id);
 	}
+
 }

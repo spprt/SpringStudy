@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -58,7 +59,7 @@ public class Board implements Serializable {
 	// @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval =
 	// true)
 //	@JoinColumn(name = "docid", referencedColumnName = "id")
-	@OneToMany(mappedBy = "doc", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "doc", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Collection<BoardFile> files;
 
 	public Long getId() {

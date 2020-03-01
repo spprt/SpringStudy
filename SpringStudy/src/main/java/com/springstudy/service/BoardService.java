@@ -2,6 +2,8 @@ package com.springstudy.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springstudy.entity.Board;
@@ -30,4 +32,6 @@ public interface BoardService {
 	public List<Board> selectList(Criteria cri, Long empid);
 
 	public BoardFile readFile(Long id) throws Exception;
+
+	public void fileDown(Long id, HttpServletResponse response) throws Exception;
 }

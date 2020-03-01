@@ -1,8 +1,5 @@
 package com.springstudy.controller;
 
-import java.io.File;
-import java.net.URLEncoder;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +14,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springstudy.entity.Board;
-import com.springstudy.entity.BoardFile;
 import com.springstudy.entity.Employee;
 import com.springstudy.service.BoardService;
 import com.springstudy.service.EmployeeService;
@@ -71,7 +67,7 @@ public class BoardController {
 			if (null != emp)
 				mv.addObject("writerName", emp.getName());
 		} catch (Exception e) {
-			logger.info("BoardController : not Matched employee");
+			logger.info("BoardController : not Matched employee" + empid);
 		}
 
 		return mv;
@@ -97,21 +93,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/board/fileDown", method = RequestMethod.GET)
 	public void fileDown(Long id, HttpServletResponse response) throws Exception {
-		BoardFile file = service.readFile(id);
-		String storedName = file.getStoredName();
-		String fileName = file.getFileName();
-
-		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
-		byte fileByte[] = org.apache.commons.io.FileUtils
-				.readFileToByteArray(new File("C:\\repository\\" + storedName));
-
-		response.setContentType("application/octet-stream");
-		response.setContentLength(fileByte.length);
-		response.setHeader("Content-Disposition",
-				"attachment; fileName=\"" + URLEncoder.encode(fileName, "UTF-8") + "\";");
-		response.getOutputStream().write(fileByte);
-		response.getOutputStream().flush();
-		response.getOutputStream().close();
+		service.fileDown(id, response);
 	}
 
 	@RequestMapping(value = "/board/edit", method = RequestMethod.GET)

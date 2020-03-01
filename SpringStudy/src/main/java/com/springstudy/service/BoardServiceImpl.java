@@ -1,8 +1,10 @@
 package com.springstudy.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -72,6 +74,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void delete(Long id) throws Exception {
+		Board board = read(id);
+		Collection<? extends DocFile> fileList = board.getFiles();
+		for (DocFile f : fileList) {
+			fileUtil.fileDelete(f.getStoredName());
+		}
 		boardDAO.delete(id);
 	}
 
@@ -90,4 +97,12 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.readFile(id);
 	}
 
+	@Override
+	public void fileDown(Long id, HttpServletResponse response) throws Exception {
+		BoardFile file = readFile(id);
+		String storedName = file.getStoredName();
+		String fileName = file.getFileName();
+
+		fileUtil.fileDown(response, storedName, fileName);
+	}
 }

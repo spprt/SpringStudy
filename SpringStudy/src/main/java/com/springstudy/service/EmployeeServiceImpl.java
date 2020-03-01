@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.springstudy.entity.Employee;
+import com.springstudy.exception.AlreadyExistingEmailException;
 import com.springstudy.exception.IdPasswordNotMatchingException;
 import com.springstudy.persistence.EmployeeDAO;
 import com.springstudy.util.AuthInfo;
@@ -23,6 +24,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional
 	public void addEmployee(Employee employee) {
+		Employee emp = getEmployee(employee.getEmail());
+		if (null != emp) {
+			throw new AlreadyExistingEmailException();
+		}
 		employeeDAO.addEmployee(employee);
 	}
 

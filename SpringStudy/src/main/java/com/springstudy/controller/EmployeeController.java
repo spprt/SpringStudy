@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springstudy.entity.Employee;
+import com.springstudy.exception.AlreadyExistingEmailException;
 import com.springstudy.service.EmployeeService;
 
 @Controller
@@ -52,12 +54,18 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
-	public ModelAndView saveEmployee(@ModelAttribute Employee employee) {
- 		if (employee.getId() == null) { // if employee id is 0 then creating the
-			// employee other updating the employee
-			employeeService.addEmployee(employee);
-		} else {
-			employeeService.updateEmployee(employee);
+	public ModelAndView saveEmployee(@ModelAttribute Employee employee, BindingResult bindingResult) {
+		try {
+			if (employee.getId() == null) { // if employee id is 0 then creating the
+				// employee other updating the employee
+				employeeService.addEmployee(employee);
+			} else {
+				employeeService.updateEmployee(employee);
+			}
+		} catch (AlreadyExistingEmailException e) {
+			bindingResult.rejectValue("email", "exist", "이미 존재하는 이메일 주소입니다.");
+			ModelAndView mv = new ModelAndView("user/signup/step2");
+			return mv;
 		}
 		return new ModelAndView("redirect:/");
 	}

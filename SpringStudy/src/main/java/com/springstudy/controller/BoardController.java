@@ -18,8 +18,8 @@ import com.springstudy.entity.Employee;
 import com.springstudy.service.BoardService;
 import com.springstudy.service.EmployeeService;
 import com.springstudy.util.AuthInfo;
-import com.springstudy.util.Criteria;
 import com.springstudy.util.PageMaker;
+import com.springstudy.util.SearchCriteria;
 
 @Controller
 public class BoardController {
@@ -38,12 +38,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-	public ModelAndView list(Model model, Criteria cri) throws Exception {
+	public ModelAndView list(Model model, SearchCriteria cri) throws Exception {
 		ModelAndView mv = new ModelAndView("board/list");
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.totalCnt());
+		pageMaker.setTotalCount(service.selectCount(cri));
 
 		mv.addObject("list", service.selectList(cri));
 		mv.addObject("page", pageMaker);
@@ -52,7 +52,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/articles", method = RequestMethod.GET)
-	public ModelAndView articles(Long empid, Model model, Criteria cri) throws Exception {
+	public ModelAndView articles(Long empid, Model model, SearchCriteria cri) throws Exception {
 		ModelAndView mv = new ModelAndView("board/articles");
 
 		PageMaker pageMaker = new PageMaker();

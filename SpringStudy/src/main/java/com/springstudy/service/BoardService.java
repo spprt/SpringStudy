@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springstudy.entity.Board;
 import com.springstudy.entity.BoardFile;
-import com.springstudy.util.Criteria;
+import com.springstudy.util.SearchCriteria;
 
 public interface BoardService {
 	public void write(Board board) throws Exception;
@@ -27,9 +27,13 @@ public interface BoardService {
 
 	public void delete(Long id) throws Exception;
 
-	public List<Board> selectList(Criteria cri);
+	public List<Board> selectList(SearchCriteria cri);
 
-	public List<Board> selectList(Criteria cri, Long empid);
+	public List<Board> selectList(SearchCriteria cri, Long empid);
+	
+	public int selectCount(SearchCriteria cri);
+
+	public int selectCount(SearchCriteria cri, Long empid);
 
 	public BoardFile readFile(Long id) throws Exception;
 

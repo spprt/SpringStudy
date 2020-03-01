@@ -14,8 +14,8 @@ import com.springstudy.entity.Board;
 import com.springstudy.entity.BoardFile;
 import com.springstudy.entity.DocFile;
 import com.springstudy.persistence.BoardDAO;
-import com.springstudy.util.Criteria;
 import com.springstudy.util.FileUtils;
+import com.springstudy.util.SearchCriteria;
 
 @Service("boardService")
 @Transactional
@@ -83,13 +83,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> selectList(Criteria cri) {
+	public List<Board> selectList(SearchCriteria cri) {
 		return boardDAO.selectList(cri);
 	}
 
 	@Override
-	public List<Board> selectList(Criteria cri, Long empid) {
+	public List<Board> selectList(SearchCriteria cri, Long empid) {
 		return boardDAO.selectList(cri, empid);
+	}
+	
+	@Override
+	public int selectCount(SearchCriteria cri) {
+		return boardDAO.selectCount(cri);
+	}
+
+	@Override
+	public int selectCount(SearchCriteria cri, Long empid) {
+		return boardDAO.selectCount(cri, empid);
 	}
 
 	@Override

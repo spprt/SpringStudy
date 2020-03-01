@@ -16,7 +16,7 @@
 
         <div class="signup-box-body">
             <p class="box-msg">Register a new membership</p>
-            <form:form role="form" modelAttribute="employee" action="${pageContext.request.contextPath }/saveEmployee" method="post">
+            <form:form role="form" modelAttribute="employee" action="${pageContext.request.contextPath }/employee/save" method="post">
                 <div class="form-group has-feedback">
                     <form:input type="text" class="form-control" placeholder="EMAIL" path="email"/>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

@@ -45,24 +45,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> list() throws Exception {
-		return boardDAO.list();
-	}
-
-	/** to-do **/
-	@Override
-	public int totalCnt() throws Exception {
-		return boardDAO.totalCount();
-	}
-
-	@Override
-	public int totalCnt(Long empid) throws Exception {
-		return boardDAO.totalCount(empid);
-	}
-
-	/** to-do **/
-
-	@Override
 	public Board read(Long id) throws Exception {
 		return boardDAO.read(id);
 	}

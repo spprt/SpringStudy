@@ -11,14 +11,6 @@ public interface BoardDAO {
 
 	public void write(Board board) throws Exception;
 
-	public List<Board> list() throws Exception;
-
-	public List<Board> list(Long empid) throws Exception;
-
-	public int totalCount() throws Exception;
-
-	public int totalCount(Long empid) throws Exception;
-
 	public Board read(Long id) throws Exception;
 
 	public void update(Board board) throws Exception;
@@ -28,7 +20,7 @@ public interface BoardDAO {
 	public List<Board> selectList(SearchCriteria cri);
 
 	public List<Board> selectList(SearchCriteria cri, Long empid);
-	
+
 	public int selectCount(SearchCriteria cri);
 
 	public int selectCount(SearchCriteria cri, Long empid);

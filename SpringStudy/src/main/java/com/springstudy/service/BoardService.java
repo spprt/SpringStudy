@@ -15,12 +15,6 @@ public interface BoardService {
 
 	public void write(Board board, MultipartHttpServletRequest mpReq) throws Exception;
 
-	public List<Board> list() throws Exception;
-
-	public int totalCnt() throws Exception;
-
-	public int totalCnt(Long empid) throws Exception;
-
 	public Board read(Long id) throws Exception;
 
 	public void update(Board board) throws Exception;

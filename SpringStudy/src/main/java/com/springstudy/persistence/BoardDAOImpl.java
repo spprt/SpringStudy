@@ -28,30 +28,6 @@ public class BoardDAOImpl implements BoardDAO {
 		getSession().saveOrUpdate(board);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Board> list() throws Exception {
-		return getSession().createQuery("from board").list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Board> list(Long empid) throws Exception {
-		Query query = getSession().createQuery("from board where writerId = :empid");
-		query.setParameter("empid", empid);
-		return query.list();
-	}
-
-	@Override
-	public int totalCount() throws Exception {
-		return list().size();
-	}
-
-	@Override
-	public int totalCount(Long empid) throws Exception {
-		return list(empid).size();
-	}
-
 	@Override
 	public Board read(Long id) throws Exception {
 		return (Board) getSession().get(Board.class, id);

@@ -45,7 +45,12 @@ public class EmployeeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/newEmployee", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public ModelAndView myPage(ModelAndView model) {
+		return new ModelAndView("user/mypage");
+	}
+
+	@RequestMapping(value = "/employee/new", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
 		Employee employee = new Employee();
 		model.addObject("employee", employee);
@@ -53,8 +58,8 @@ public class EmployeeController {
 		return model;
 	}
 
-	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
-	public ModelAndView saveEmployee(@ModelAttribute Employee employee, BindingResult bindingResult) {
+	@RequestMapping(value = "/employee/save", method = RequestMethod.POST)
+	public ModelAndView save(@ModelAttribute Employee employee, BindingResult bindingResult) {
 		try {
 			if (employee.getId() == null) { // if employee id is 0 then creating the
 				// employee other updating the employee
@@ -70,15 +75,15 @@ public class EmployeeController {
 		return new ModelAndView("redirect:/");
 	}
 
-	@RequestMapping(value = "/deleteEmployee", method = RequestMethod.GET)
-	public ModelAndView deleteEmployee(HttpServletRequest request) {
+	@RequestMapping(value = "/employee/delete", method = RequestMethod.GET)
+	public ModelAndView delete(HttpServletRequest request) {
 		Long id = Long.parseLong(request.getParameter("id"));
 		employeeService.deleteEmployee(id);
 		return new ModelAndView("redirect:/");
 	}
 
-	@RequestMapping(value = "/editEmployee", method = RequestMethod.GET)
-	public ModelAndView editContact(HttpServletRequest request) {
+	@RequestMapping(value = "/employee/update", method = RequestMethod.GET)
+	public ModelAndView update(HttpServletRequest request) {
 		Long id = Long.parseLong(request.getParameter("id"));
 		Employee employee = employeeService.getEmployee(id);
 		ModelAndView model = new ModelAndView("EmployeeForm");

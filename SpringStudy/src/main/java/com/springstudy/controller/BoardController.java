@@ -57,7 +57,7 @@ public class BoardController {
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.totalCnt(empid));
+		pageMaker.setTotalCount(service.selectCount(cri, empid));
 
 		mv.addObject("list", service.selectList(cri, empid));
 		mv.addObject("page", pageMaker);
